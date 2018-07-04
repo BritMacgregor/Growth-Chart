@@ -84,18 +84,34 @@
     </div>
 
 
-    <script id="list-template" type="text/x-handlebars-template">
-      <ul class="list-group">
-        {{#each charts}}
-        <li class="list-group-item">
-          {{name}} - {{age}} - {{height}} - {{weight}}
-          <span>
-            <button type="button" class="btn btn-xs btn-secondary" onclick="handleEditChartClick('{{_id}}')">Edit</button>
-            <button type="button" class="btn btn-xs btn-secondary" onclick="handleDeleteChartClick('{{_id}}')">Delete</button>
-          </span>
-        </li>
-        {{/each}}
-      </ul>
+    <script id="chart-template" type="text/x-handlebars-template">
+    <table class="table table-sm table-bordered table-striped">
+      <thead>
+          <tr>
+              <th scope="col">Name</th>
+              <th scope="col">Age (mths)</th>
+              <th scope="col">Height (in)</th>
+              <th scope="col">Weight (lbs)</th>
+              <th scope="col">Date</th>
+              <th scope="col">Edit/Delete</th>
+            </tr>
+       </thead>
+       <tbody>
+         {{#each charts}}
+         <tr>
+           <td> {{name}} </td>
+           <td> {{age}} </td>
+           <td> {{height}} </td>
+           <td> {{weight}}</td>
+           <td> {{date}}</td>
+           <td>
+             <button type="button" class="btn btn-xs btn-secondary" onclick="handleEditChartClick('{{_id}}')">Edit</button>
+             <button type="button" class="btn btn-xs btn-secondary" onclick="handleDeleteChartClick('{{_id}}')">Delete</button>
+           </td>
+         </tr>
+         {{/each}}
+       </tbody>
+     </table>
     </script>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>

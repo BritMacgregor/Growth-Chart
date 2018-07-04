@@ -15,7 +15,7 @@ function getCharts() {
 //FETCH ChartS FROM THE API AND RENDER TO THE PAGE
 //Whenever the list of Charts is refreshed, save that array to a property on the global window object
 function refreshChartList() {
-  const template = $('#list-template').html();
+  const template = $('#chart-template').html();
   const compiledTemplate = Handlebars.compile(template);
 
   getCharts()
