@@ -38,7 +38,7 @@ function handleAddFileClick() {
 
 //HANDLER FOR HIDING FORM VISIBILITY
 function toggleAddFileFormVisibility() {
-  $('#form-container').toggleClass('hidden');
+  $('#form-container').toggleClass('d-none');
 }
 
 //The Submit button will trigger a javascript function that grabs the data from the form and POSTs it to an API endpoint

@@ -41,7 +41,7 @@ Users can view edit, and/or, the past entries.
 In order to view and access/use this application on your local machine, you must first download/clone the project onto your own machine.
 
 1. After cloning install the necessary dependencies:
-  npm install
+    npm install
 
 2. After necessary dependencies are installed you will be able to view this application on:
     http://localhost:5000/
