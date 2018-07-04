@@ -75,7 +75,7 @@ header {
 
 header h1 {
     font-size: 2.3em;
-    color: #f2f3f3;
+    color: #e2126a;
     margin-bottom: -1%;
     font-weight: 300;
 }
@@ -87,7 +87,7 @@ header h1 {
 }
 
 .subHead{
-    color: #f2f3f3;
+    color: #e2126a;
     font-weight: 300;
     font-size: 1.3em;
     padding-left: 2.7%;
