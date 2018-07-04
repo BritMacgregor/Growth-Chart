@@ -1,0 +1,28 @@
+{
+  "name": "growth-chart",
+  "version": "1.0.0",
+  "description": "Growth Chart and Tracker for Children. | Code Louisville FSJS Final Project",
+  "main": "index.js",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "dotenv": "^6.0.0",
+    "express": "^4.16.3",
+    "mongoose": "^5.2.0",
+    "pug": "^2.0.3"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon src/server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BritMacgregor/Growth-Chart.git"
+  },
+  "author": "Brittney Mac Gregor",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/BritMacgregor/Growth-Chart/issues"
+  },
+  "homepage": "https://github.com/BritMacgregor/Growth-Chart#readme"
+}

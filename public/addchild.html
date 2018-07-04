@@ -1,0 +1,98 @@
+<!-- Add Child -->
+<!doctype html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+
+    <!-- Custom Css -->
+    <link rel="stylesheet" href="stylesheets/style.css">
+
+    <!--GoogleFonts-->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet">
+
+
+    <title>Growth Calculator and Tracker | Add New Entry</title>
+</head>
+ <body>
+   <nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="index.html">Child Growth Tracker</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav">
+      <li class="nav-item active">
+        <a class="nav-link" href="addChild.html">Add New <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="profile.html">Profile</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="index.html">Log Out</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+  <div class="container wrapper">
+    <header>
+        <div class="row justify-content-center">
+            <div class="col-xl-5 col-lg-6 col-md-7 col-sm-9 col-xs-12 ">
+                <h1 id="myHeading">Growth Calculator & Tracker</h1>
+            </div>
+            <!--/col-lg-3-->
+        </div>
+        <!--/row-->
+    </header>
+    <div class="row justify-content-center">
+        <div class="col-xl-5 col-lg-6 col-md-7 col-sm-9 col-xs-12 subHead">
+            <p>Learn and track your child's growth percentile</p>
+        </div>
+        <!--/col-lg-3-->
+    </div>
+    <!--/row-->
+            <!--Growth Form-->
+            <!--Growth Form-->
+            <div class="row justify-content-center">
+                <div class="col-xl-5 col-lg-6 col-md-7 col-sm-9 col-xs-12">
+                    <form id="addChild" action="profile.html" method="POST"class="form-signin">
+                        <h1 class="h5 mb-2  intro">Add New Entry to Track Growth</h1>
+                      <div class="input-group">
+                        <input type="text" id="childName" class="childName"  placeholder="Enter Child's Name" >
+                        <input type="number" id="age"  placeholder="Age (months)">
+                        <input type="number" id="height"  placeholder="Length/Height (inches)">
+                        <input type="number" id="weight"  placeholder="Weight (pounds)">
+
+                       <button class="btn btn-sm btn-secondary" id="saveAndUpdateBut">Save & Update</button>
+                      <div class="form-group">
+                    </form>
+                </div>
+                <!--/col-lg-3-->
+            </div><!--/row-->
+            <!--/Growth Form-->
+          </div>
+        </div>
+            <!--/Calculator Form-->
+
+        <!--Footer-->
+            <div class="row justify-content-center">
+                <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                    <p class="mt-5 mb-3 copyright">Growth Tracker Created By: Brittney Mac Gregor</p>
+                </div>
+            </div><!--/row-->
+        <!--/Footer-->
+    </div><!--/Main Container Wrapper-->
+
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
+    <!--Custom JavaScript-->
+    <script src="js/app.js" type"javascript"></script>
+
+ </body>
+</html>
