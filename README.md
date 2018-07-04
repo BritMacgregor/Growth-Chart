@@ -1,144 +1,58 @@
-# FSJS Week 8 - Delete the negative; Accentuate the positive!
+# Child Growth Chart and Tracker
+## A Code Louisville FSJS Final Project
 
-**Outline**
+**Intro**
 
-1. Set up for week8
-2. What is a soft delete?
-3. Update our model and handlers
-4. Delete handler
-5. Baby-step our way to a delete button
+The project contained in this repository
+is a growth chart calculator and tracker.
 
+This application uses CRUD functions.
 
-## 1. Setup Project
-1. Clear changes made last week
-```
-git reset --hard HEAD
-git clean -f
-```
+Skills used to create this application include:
+HTML, CSS, JavaScript MEAN Stack.
 
-2. Check out a clean week8 branch
-```
-git fetch
-git checkout -fb week8 origin/week8
-git pull
-npm install
-```
+**Description**
+This application that tracks the growth of
+a child by calculating some basic data,
+weight, height, age. After the data is entered
+the app then returns to the user whether or not
+the child's weight and height are average,
+above average, or below average and displays
+those results in the form of a line graph.
+Users can view edit, and/or, the past entries.
 
-## 2. What is a soft delete
+### Project Requirments
+1. Responsive
+2. Written primarily using JavaScript meanstack path
+ (mongo/express/anything/node)
+3. Implements both front-end component using html, css, JavaScript, and front-end JavaScript framework/library
+ (Jquery or Angular are good choices)
+4. Implements a back-end component using node.js and build/use a NoSQL database with MongoDB
+5. Implements all 4 CRUD functions on your database
+ (create, read, update, and delete)
+6. Has comments
+7. Includes a readme file that includes:
+  1. Brief description of project's purpose and functionality
+  2. Detailed steps on how to start the application and any prerequisites to run it.
+   (for example if the project requires using a package manager like NPM, you must include any requirements needed to run it and the steps needed to view and gets started using.)
+8. Project code is on your Github in it's own repository
 
-**Deleting Can Be Hazardous to your Health**
-It is difficult to make deleting (as in, actually removing something from the database) save.  Meaning, if you give users the ability to destroy data, eventually they will do it by accident.  Without some means of recovering that data, deleting can make managers and clients sad.
+**To access the application on your local machine**
+In order to view and access/use this application on your local machine, you must first download/clone the project onto your own machine.
 
-**So Don't Do It**
-Simply mark a database entry as `deleted` instead.  That way, you can exclude "deleted" items from your searches AND recover those items (undelete with ease).
+1. After cloning install the necessary dependencies:
+  npm install
 
-## 3. So let's apply that idea to our model
-1. In `/src/models/file.model.js`, update our model so that it has a `deleted` field:
-```javascript
-const FileSchema = new mongoose.Schema({
-  title: String,
-  description: String,
-  created_at: { type: Date, default: Date.now },
-  deleted: {type: Boolean, default: false}
-});
-```
+2. After necessary dependencies are installed you will be able to view this application on:
+    http://localhost:5000/
 
-2. Now make sure that our route handlers know to exclude "deleted" items. In `src/routes/index.js` update the `GET /file` handler:
-```javascript
-router.get('/file', function(req, res, next) {
-  const File = mongoose.model('File');
-  
-  File.find({deleted: {$ne: true}}, function(err, files) {
-    if (err) {
-      console.log(err);
-      return res.status(500).json(err);
-    }
+**To access the application on your local machine**
+To begin using the application simple click the add button. This will bring forth a form in which you can enter your child's stats.
 
-    res.json(files);
-  });
-});
-```
-So, why not just `{deleted: false}`?
-[Documentation for Mongo's $ne operator](https://docs.mongodb.com/manual/reference/operator/query/ne/)
+After you have filled in the form, click the submit button and your data will be displayed in the table.
 
-## 4. Let's do some deleting
-1. We can now update the `DELETE /file/:fileId` handler in `src/routes/index.js` to actually do something.  Since we aren't removing the file, "deleting" will basically be updating the file.  In other works `DELETE /file/:fileId` will look really similar to `PUT /file/:fileId`:
-```javascript
-router.delete('/file/:fileId', function(req, res, next) {
-  const File = mongoose.model('File');
-  const fileId = req.params.fileId;
+You may make as many entries as you wish.
 
-  File.findById(fileId, function(err, file) {
-    if (err) {
-      console.log(err);
-      return res.status(500).json(err);
-    }
-    if (!file) {
-      return res.status(404).json({message: "File not found"});
-    }
+If you wish to edit an entry, click the edit button displayed to the left of the entry. The form will display once again with your previous data already entered. Make your changes and click submit. Your entry will be updated and displayed back in the table.
 
-    file.deleted = true;
-
-    file.save(function(err, doomedFile) {
-      res.json(doomedFile);
-    })
-
-  })
-});
-```
-How would you implement an `undelete` operation?
-
-## 5. Baby-step our way through the front-end stuff
-1. Make a "Delete" button appear by each file, just next to the "Edit" button.  Open `public/index.html` and add this just after the edit button
-```html
-<button type="button" class="btn btn-xs btn-danger">Del</button>
-```
-
-2. Now make it do something by adding an `onclick` handler (we can copy/paste from the "Edit" button and then change it to suit our needs):
-```html
-<button type="button" class="btn btn-xs btn-danger" onclick="handleDeleteFileClick('{{_id}}')">Del</button>
-```
-
-3. Create the `handleDeleteFileClick()` function in `public/js/app.js`:
-```javascript
-function handleDeleteFileClick(id) {
-  console.log("File", id, "is DOOMED!!!!!!");
-}
-```
-
-4. Er....maybe we should ask for confirmation before doing this:
-```javascript
-function handleDeleteFileClick(id) {
-  if (confirm("Are you sure?")) {
-    console.log("File", id, "is DOOMED!!!!!!");
-  }
-}
-```
-
-5. Much better.  Now instead of logging out a message, let's send an ajax `DELETE` message to `/file/:fileId` to have the file deleted:
-```javascript
-function handleDeleteFileClick(id) {
-  if (confirm("Are you sure?")) {
-    deleteFile(id);
-  }
-}
-```
-
-6. Aaaaand we'll create that function (We can look at `submitFileForm()` to remind ourselves how to do it):
-```javascript
-function deleteFile(id) {
-  $.ajax({
-    type: 'DELETE',
-    url: '/api/file/' + id,
-    dataType: 'json',
-    contentType : 'application/json',
-  })
-    .done(function(response) {
-      console.log("File", id, "is DOOMED!!!!!!");
-      refreshFileList();
-    })
-    .fail(function(error) {
-      console.log("I'm not dead yet!", error);
-    })
-}
-```
+If you wish to delete an entry, click the delete button displayed to the left of the entry and next to the edit button. By clicking the delete button your entry will be deleted (soft delete) and no longer be visible to you.
