@@ -13,7 +13,7 @@ const mongoose = require('mongoose');
 mongoose.connection.openUri(`mongodb://${config.db.username}:${config.db.password}@${config.db.host}/${config.db.dbName}`);
 
 // IMPORT ALL MONGOOSE MODELS
-require('./models/file.model.js');
+require('./models/chart.model.js');
 
 // // VIEW ENGINE SETUP --- TELLS EXPRES TO USE THE PUG TEMPLATING ENGINE
 // app.set('view engine', 'pug');

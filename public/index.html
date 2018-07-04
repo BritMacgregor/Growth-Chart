@@ -20,7 +20,7 @@
              <a class="nav-link" href="#">Add New <span class="sr-only">(current)</span></a>
            </li>
            <li class="nav-item">
-             <a class="nav-link" href="#">Profile</a>
+             <a class="nav-link" href="#">Prochart</a>
            </li>
            <li class="nav-item">
              <a class="nav-link" href="#">Log Out</a>
@@ -50,35 +50,48 @@
         </div>
       <div id="list-container"></div>
 
-      <button id="add-file-button" class="btn btn-secondary" onclick="handleAddFileClick()">Add File</button>
+      <button id="add-chart-button" class="btn btn-secondary" onclick="handleAddChartClick()">Add Chart</button>
       <div id="form-container" class="card d-none">
-        <form id="add-file-form">
+        <form id="add-chart-form">
           <h1 class="intro">Add/Update Entry</h1>
-          <input type="hidden" id="file-id" value="" />
+          <input type="hidden" id="chart-id" value="" />
           <div class="form-group">
-            <label for="file-title" class="sr-only">Title</label>
-            <input type="text" class="form-control" id="file-title" placeholder="Title">
+            <label for="chart-name" class="sr-only">Name</label>
+            <input type="text" class="form-control" id="chart-name" placeholder="Name">
           </div>
           <div class="form-group">
-            <label for="file-description" class="sr-only">Description</label>
-            <input type="text" class="form-control" id="file-description" placeholder="Description">
+            <label for="chart-age" class="sr-only">Age</label>
+            <input type="text" class="form-control" id="chart-age" placeholder="Age">
           </div>
-          <button type="button" onclick="submitFileForm()" class="btn btn-secondary">Submit</button>
-          <button type="button" onclick="cancelFileForm()" class="btn btn-secondary">cancel</button>
+          <div class="form-group">
+            <label for="chart-height" class="sr-only">Height</label>
+            <input type="text" class="form-control" id="chart-height" placeholder="Height">
+          </div>
+          <div class="form-group">
+            <label for="chart-weight" class="sr-only">weight</label>
+            <input type="text" class="form-control" id="chart-weight" placeholder="Weight">
+          </div>
+          <button type="button" onclick="submitChartForm()" class="btn btn-secondary">Submit</button>
+          <button type="button" onclick="cancelChartForm()" class="btn btn-secondary">cancel</button>
         </form>
+      </div>
+      <!--Footer-->
+      <div class="row justify-content-center">
+          <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-xs-12">
+              <p class="mt-5 mb-3 copyright">Growth Tracker Created By: Brittney Mac Gregor</p>
+          </div>
       </div>
     </div>
 
 
-
     <script id="list-template" type="text/x-handlebars-template">
       <ul class="list-group">
-        {{#each files}}
+        {{#each charts}}
         <li class="list-group-item">
-          <strong>{{title}}</strong> - {{description}}
-          <span class="pull-right">
-            <button type="button" class="btn btn-xs btn-secondary" onclick="handleEditFileClick('{{_id}}')">Edit</button>
-            <button type="button" class="btn btn-xs btn-secondary" onclick="handleDeleteFileClick('{{_id}}')">Delete</button>
+          {{name}} - {{age}} - {{height}} - {{weight}}
+          <span>
+            <button type="button" class="btn btn-xs btn-secondary" onclick="handleEditChartClick('{{_id}}')">Edit</button>
+            <button type="button" class="btn btn-xs btn-secondary" onclick="handleDeleteChartClick('{{_id}}')">Delete</button>
           </span>
         </li>
         {{/each}}

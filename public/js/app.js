@@ -1,103 +1,106 @@
 
 //FETCHES DATA FROM THE API
-function getFiles() {
-  return $.ajax('/api/file')
+function getCharts() {
+  return $.ajax('/api/chart')
     .then(res => {
-      console.log("Results from getFiles()", res);
+      console.log("Results from getCharts()", res);
       return res;
     })
     .fail(err => {
-      console.error("Error in getFiles()", err);
+      console.error("Error in getCharts()", err);
       throw err;
     });
 }
 
-//FETCH FILES FROM THE API AND RENDER TO THE PAGE
-//Whenever the list of files is refreshed, save that array to a property on the global window object
-function refreshFileList() {
+//FETCH ChartS FROM THE API AND RENDER TO THE PAGE
+//Whenever the list of Charts is refreshed, save that array to a property on the global window object
+function refreshChartList() {
   const template = $('#list-template').html();
   const compiledTemplate = Handlebars.compile(template);
 
-  getFiles()
-    .then(files => {
+  getCharts()
+    .then(charts => {
 
-      window.fileList = files;
+      window.chartList = charts;
 
-      const data = {files: files};
+      const data = {charts: charts};
       const html = compiledTemplate(data);
       $('#list-container').html(html);
     })
 }
 
 //BUTTON FOR SHOWING FORM VISIBILITY
-function handleAddFileClick() {
+function handleAddChartClick() {
   console.log("Baby steps...");
   setFormData({});
-  toggleAddFileFormVisibility();
+  toggleAddChartFormVisibility();
 }
 
 //HANDLER FOR HIDING FORM VISIBILITY
-function toggleAddFileFormVisibility() {
+function toggleAddChartFormVisibility() {
   $('#form-container').toggleClass('d-none');
 }
 
 //The Submit button will trigger a javascript function that grabs the data from the form and POSTs it to an API endpoint
-// After POSTing the data and receiving a response, the page will refresh the list of Files.
-function submitFileForm() {
+// After POSTing the data and receiving a response, the page will refresh the list of Charts.
+function submitChartForm() {
   console.log("You clicked 'submit'. Congratulations.");
 
-  const fileData = {
-    title: $('#file-title').val(),
-    description: $('#file-description').val(),
-    _id: $('#file-id').val(),
+  const chartData = {
+    name: $('#chart-name').val(),
+    age: $('#chart-age').val(),
+    height: $('#chart-height').val(),
+    weight: $('#chart-weight').val(),
+    date: $('#chart-date').val(),
+    _id: $('#chart-id').val(),
   };
 
   let method, url;
-  if (fileData._id) {
+  if (chartData._id) {
     method = 'PUT';
-    url = '/api/file/' + fileData._id;
+    url = '/api/chart/' + chartData._id;
   } else {
     method = 'POST';
-    url = '/api/file';
+    url = '/api/chart';
   }
 
   $.ajax({
     type: method,
     url: url,
-    data: JSON.stringify(fileData),
+    data: JSON.stringify(chartData),
     dataType: 'json',
     contentType : 'application/json',
   })
     .done(function(response) {
       console.log("We have posted the data");
-      refreshFileList();
-      toggleAddFileFormVisibility();
+      refreshChartList();
+      toggleAddChartFormVisibility();
     })
     .fail(function(error) {
       console.log("Failures at posting, we are", error);
     })
 
-  console.log("Your file data", fileData);
+  console.log("Your chart data", chartData);
 }
 
 //CANCEL BUTTON WILL CLEAR THE FORM WITHOUT POSTING THE DATA
-function cancelFileForm() {
-  toggleAddFileFormVisibility();
+function cancelChartForm() {
+  toggleAddChartFormVisibility();
 }
 
 //EDIT BUTTON HANDLER
-function handleEditFileClick(id) {
-  const file = window.fileList.find(file => file._id === id);
-  if (file) {
-    setFormData(file);
-    toggleAddFileFormVisibility();
+function handleEditChartClick(id) {
+  const chart = window.chartList.find(chart => chart._id === id);
+  if (chart) {
+    setFormData(chart);
+    toggleAddChartFormVisibility();
   }
 }
 
 //DELETE CLICK HANDLER
-function handleDeleteFileClick(id) {
+function handleDeleteChartClick(id) {
   if (confirm("Are you sure?")) {
-    deleteFile(id);
+    deleteChart(id);
   }
 }
 
@@ -105,28 +108,34 @@ function handleDeleteFileClick(id) {
 function setFormData(data) {
   data = data || {};
 
-  const file = {
-    title: data.title || '',
-    description: data.description || '',
+  const chart = {
+    name: data.name || '',
+    age: data.age || '',
+    height: data.height || '',
+    weight: data.weight || '',
+    date: data.date || '',
     _id: data._id || '',
   };
 
-  $('#file-title').val(file.title);
-  $('#file-description').val(file.description);
-  $('#file-id').val(file._id);
+  $('#chart-name').val(chart.name);
+  $('#chart-age').val(chart.age);
+  $('#chart-height').val(chart.height);
+  $('#chart-weight').val(chart.weight);
+  $('#chart-date').val(chart.date);
+  $('#chart-id').val(chart._id);
 }
 
 //DELETE ELEMENT FUNCTION
-function deleteFile(id) {
+function deleteChart(id) {
   $.ajax({
     type: 'DELETE',
-    url: '/api/file/' + id,
+    url: '/api/chart/' + id,
     dataType: 'json',
     contentType : 'application/json',
   })
     .done(function(response) {
-      console.log("File", id, "is DOOMED!!!!!!");
-      refreshFileList();
+      console.log("Chart", id, "is DOOMED!!!!!!");
+      refreshChartList();
     })
     .fail(function(error) {
       console.log("I'm not dead yet!", error);
@@ -134,4 +143,4 @@ function deleteFile(id) {
 }
 
 //REFRESHES THE LIST
-refreshFileList();
+refreshChartList();

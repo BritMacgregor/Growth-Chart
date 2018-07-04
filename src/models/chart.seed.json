@@ -1,0 +1,7 @@
+
+
+[
+  {"name":"Yael", "age": 1, "height": 2, "weight": 8, "date": "07/04/2018"},
+  {"name":"Vashti", "age": 2, "height": 4, "weight": 10, "date":"07/04/2018" },
+  {"name":"Drew", "age": 3, "height": 6, "weight": 12, "date": "07/04/2018"}
+]
