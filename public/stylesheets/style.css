@@ -222,13 +222,9 @@ td, td a {
 
 /* Error Page */
 @import url(https://fonts.googleapis.com/css?family=opensans:500);
-body{
-                background: #84d4d3;
-                color:#fff;
-                font-family: 'Open Sans', sans-serif;
-                max-height:700px;
-                overflow: hidden;
-            }
+
+
+      
             .c{
                 text-align: center;
                 display: block;
