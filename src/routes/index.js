@@ -10,7 +10,8 @@ router.use('/doc', function(req, res, next) {
  //GET A LIST OF ALL CHARTS IN THE DB
  router.get('/chart', function(req, res, next) {
    const Chart = mongoose.model('Chart');
-
+   //$ne means "not equal too..." ($ne unique to mongoose)
+//find everything that is equal to not equal to true aka false.
    Chart.find({deleted: {$ne: true}}, function(err, charts) {
      if (err) {
        console.log(err);
@@ -90,20 +91,25 @@ router.put('/chart/:chartId', function(req, res, next) {
 //DELETE
 //DELETES AN ELEMENT
 router.delete('/chart/:chartId', function(req, res, next) {
+  //asking mongoose to get a model named Chart
  const Chart = mongoose.model('Chart');
+  //pulls object id out of req.param
  const chartId = req.params.chartId;
-
+//looks for the chart id of a chart.
  Chart.findById(chartId, function(err, chart) {
+
    if (err) {
      console.log(err);
      return res.status(500).json(err);
    }
+      //if we don't find the chart... give a 404
    if (!chart) {
      return res.status(404).json({message: "Chart not found"});
    }
-
+   //if we do find the chart...set the delete property of chart to true.
+   //which will not show the "deleted" chart object
    chart.deleted = true;
-
+      //we save the chart object
    chart.save(function(err, doomedChart) {
      res.json(doomedChart);
    })

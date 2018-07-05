@@ -31,7 +31,7 @@ function refreshChartList() {
 
 //BUTTON FOR SHOWING FORM VISIBILITY
 function handleAddChartClick() {
-  console.log("Baby steps...");
+  // console.log("Baby steps...");
   setFormData({});
   toggleAddChartFormVisibility();
 }
@@ -44,7 +44,7 @@ function toggleAddChartFormVisibility() {
 //The Submit button will trigger a javascript function that grabs the data from the form and POSTs it to an API endpoint
 // After POSTing the data and receiving a response, the page will refresh the list of Charts.
 function submitChartForm() {
-  console.log("You clicked 'submit'. Congratulations.");
+  // console.log("You clicked 'submit'. Congratulations.");
 
   const chartData = {
     name: $('#chart-name').val(),
@@ -72,15 +72,15 @@ function submitChartForm() {
     contentType : 'application/json',
   })
     .done(function(response) {
-      console.log("We have posted the data");
+      // console.log("We have posted the data");
       refreshChartList();
       toggleAddChartFormVisibility();
     })
     .fail(function(error) {
-      console.log("Failures at posting, we are", error);
+      // console.log("Failures at posting, we are", error);
     })
 
-  console.log("Your chart data", chartData);
+  // console.log("Your chart data", chartData);
 }
 
 //CANCEL BUTTON WILL CLEAR THE FORM WITHOUT POSTING THE DATA
@@ -98,8 +98,10 @@ function handleEditChartClick(id) {
 }
 
 //DELETE CLICK HANDLER
+//gets file id, makes sure you want to delete, then soft deletes
 function handleDeleteChartClick(id) {
-  if (confirm("Are you sure?")) {
+  //asks user permission if they click the delete button
+  if (confirm("Are you sure you wish to delete?")) {
     deleteChart(id);
   }
 }
@@ -134,11 +136,11 @@ function deleteChart(id) {
     contentType : 'application/json',
   })
     .done(function(response) {
-      console.log("Chart", id, "is DOOMED!!!!!!");
+      console.log("Chart", id, "Something Went Wrong!");
       refreshChartList();
     })
     .fail(function(error) {
-      console.log("I'm not dead yet!", error);
+      console.log("File Not Deleted!", error);
     })
 }
 
