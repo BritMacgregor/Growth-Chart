@@ -7,7 +7,31 @@ router.use('/doc', function(req, res, next) {
   res.end(`Documentation http://expressjs.com/`);
 });
 
- //GET A LIST OF ALL CHARTS IN THE DB
+function calHeightPercentile(height){
+  const highaverage = 25;
+  const lowaverage = 15;
+  const aboveAverage = "Height is Above Average";
+  const belowAverage = "Height is Below Average";
+  const Average = "Height is Average";
+
+    if (height <= 15) {
+      console.log(belowAverage);
+    } else if (height >= 25) {
+      console.log(aboveAverage);
+    } else {
+      console.log(average);
+    }
+      // 1:
+      // 6.6
+      // 7.6
+      // 8.6 *if less than or = to
+      // 9.17 50% if == || less than (above #) || == || greater than (below #)
+      // 10.6 *if greater than or = to
+      // 11.6
+      // 12.6
+}
+
+ //GET A LIST OF ALL CHARTS IN T//HE DB
  router.get('/chart', function(req, res, next) {
    const Chart = mongoose.model('Chart');
    //$ne means "not equal too..." ($ne unique to mongoose)
@@ -24,8 +48,34 @@ router.use('/doc', function(req, res, next) {
 
  //GET A SINGLE chart BY PASSING ITS ID AS A URL
 router.get('/chart/:chartId', function(req, res, next) {
-  const {chartId} = req.params;
-  // same as 'const chartId = req.params.chartId'
+  const Chart = mongoose.model('Chart');
+  const chartId = req.params.chartId;
+
+  Chart.findById(chartId, function(err, chart) {
+    if (err) {
+      console.error(err);
+      return res.status(500).json(err);
+
+    // if (!chart) {
+    //   return res.status(404).json({message: "Chart not found"});
+    // }
+    //
+    // chart.name = req.body.name;
+    // chart.age = req.body.age;
+    // chart.height = req.body.height;
+    // chart.weight = req.body.weight;
+    //
+    // chart.save(function(err, savedChart) {
+    //   if (err) {
+    //     console.error(err);
+    //     return res.status(500).json(err);
+    //   }
+      res.json(savedChart);
+    }
+
+})
+
+
 
   const chart = CHARTS.find(entry => entry.id === chartId);
   if (!chart) {
@@ -34,6 +84,56 @@ router.get('/chart/:chartId', function(req, res, next) {
 
   res.json(chart);
 });
+
+////////////////TEST CODE//////////////////////////////
+// router.put('/chart/:chartId', function(req, res, next) {
+//   const Chart = mongoose.model('Chart');
+//   const chartId = req.params.chartId;
+//
+//   Chart.findById(chartId, function(err, chart) {
+//     if (err) {
+//       console.error(err);
+//       return res.status(500).json(err);
+//     }
+//     if (!chart) {
+//       return res.status(404).json({message: "Chart not found"});
+//     }
+//
+//     chart.name = req.body.name;
+//     chart.age = req.body.age;
+//     chart.height = req.body.height;
+//     chart.weight = req.body.weight;
+//
+//     chart.save(function(err, savedChart) {
+//       if (err) {
+//         console.error(err);
+//         return res.status(500).json(err);
+//       }
+//       res.json(savedChart);
+//     })
+//
+//   })
+//
+// });
+/////////////////////////////////////////////
+
+
+//use the function but instead of gettiing from the array, get from the database...use the object id..
+//se the put method for a "how too..."
+//GET A SINGLE chart BY PASSING ITS ID AS A URL
+router.get('/chart/:chartId', function(req, res, next) {
+ const {chartId} = req.params;
+ // same as 'const chartId = req.params.chartId'
+
+ const chart = CHARTS.find(entry => entry.id === chartId);
+ if (!chart) {
+   return res.status(404).end(`Could not find chart '${chartId}'`);
+ }
+
+ res.json(chart);
+});
+
+
 
 //CREATE
 //CREATES A NEW chart
@@ -44,6 +144,7 @@ router.post('/chart', function(req, res, next) {
     age: req.body.age,
     height: req.body.height,
     weight: req.body.weight,
+    heightPercentile: calHeightPercentile(req.body.height)
   };
 
   Chart.create(chartData, function(err, newChart) {

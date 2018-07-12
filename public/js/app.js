@@ -88,6 +88,15 @@ function cancelChartForm() {
   toggleAddChartFormVisibility();
 }
 
+//VIEW BUTTON HANDLER
+function handleViewChartClick(id) {
+  const chart = window.chartList.find(chart => chart._id === id);
+  if (chart) {
+    //code that redirects to a webpage or pop up modle that will show individual id properties.
+    console.log("It works!!!" + chart._id);
+  }
+}
+
 //EDIT BUTTON HANDLER
 function handleEditChartClick(id) {
   const chart = window.chartList.find(chart => chart._id === id);
