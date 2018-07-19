@@ -22,6 +22,8 @@ router.use('/doc', function(req, res, next) {
  });
 
  //GET A SINGLE chart BY PASSING ITS ID AS A URL
+ //Use the function to get from the databawse a single object by retrieve the object id...instead of the entire array.
+ //Can view the put method for an example
 router.get('/chart/:chartId', function(req, res, next) {
   const {chartId} = req.params;
   // same as 'const chartId = req.params.chartId'
