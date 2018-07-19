@@ -89,6 +89,12 @@ function cancelChartForm() {
 }
 
 //VIEW BUTTON HANDLER
+//objective:
+//user clicks the view button next to list item
+//object ID is retrieved and user redirected to new webpage
+//data correlating to object ID is displayed on the new webpage
+// name, age, date, weight, and height
+//user may click exit button or X to be redirected back to "home" page.
 function handleViewChartClick(id) {
   const chart = window.chartList.find(chart => chart._id === id);
   if (chart) {
