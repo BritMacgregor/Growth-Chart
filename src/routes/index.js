@@ -31,7 +31,7 @@ function calHeightPercentile(height){
       // 12.6
 }
 
- //GET A LIST OF ALL CHARTS IN T//HE DB
+ //GET A LIST OF ALL CHARTS IN THE DB
  router.get('/chart', function(req, res, next) {
    const Chart = mongoose.model('Chart');
    //$ne means "not equal too..." ($ne unique to mongoose)
@@ -47,8 +47,7 @@ function calHeightPercentile(height){
  });
 
  //GET A SINGLE chart BY PASSING ITS ID AS A URL
- //Use the function to get from the databawse a single object by retrieve the object id...instead of the entire array.
- //Can view the put method for an example
+
 router.get('/chart/:chartId', function(req, res, next) {
   const Chart = mongoose.model('Chart');
   const chartId = req.params.chartId;
@@ -57,82 +56,60 @@ router.get('/chart/:chartId', function(req, res, next) {
     if (err) {
       console.error(err);
       return res.status(500).json(err);
-
-    // if (!chart) {
-    //   return res.status(404).json({message: "Chart not found"});
-    // }
-    //
-    // chart.name = req.body.name;
-    // chart.age = req.body.age;
-    // chart.height = req.body.height;
-    // chart.weight = req.body.weight;
-    //
-    // chart.save(function(err, savedChart) {
-    //   if (err) {
-    //     console.error(err);
-    //     return res.status(500).json(err);
-    //   }
-      res.json(savedChart);
+    }
+    if (!chart) {
+      return res.status(404).json({message: "Chart not found"});
     }
 
-})
+    chart.name = req.body.name;
+    chart.age = req.body.age;
+    chart.height = req.body.height;
+    chart.weight = req.body.weight;
 
+    chart.save(function(err, savedChart) {
+      if (err) {
+        console.error(err);
+        return res.status(500).json(err);
+      }
+      res.json(savedChart);
+    })
 
+  })
 
-  const chart = CHARTS.find(entry => entry.id === chartId);
-  if (!chart) {
-    return res.status(404).end(`Could not find chart '${chartId}'`);
-  }
-
-  res.json(chart);
 });
-
-////////////////TEST CODE//////////////////////////////
-// router.put('/chart/:chartId', function(req, res, next) {
-//   const Chart = mongoose.model('Chart');
-//   const chartId = req.params.chartId;
-//
-//   Chart.findById(chartId, function(err, chart) {
-//     if (err) {
-//       console.error(err);
-//       return res.status(500).json(err);
-//     }
-//     if (!chart) {
-//       return res.status(404).json({message: "Chart not found"});
-//     }
-//
-//     chart.name = req.body.name;
-//     chart.age = req.body.age;
-//     chart.height = req.body.height;
-//     chart.weight = req.body.weight;
-//
-//     chart.save(function(err, savedChart) {
-//       if (err) {
-//         console.error(err);
-//         return res.status(500).json(err);
-//       }
-//       res.json(savedChart);
-//     })
-//
-//   })
-//
-// });
-/////////////////////////////////////////////
 
 
 //use the function but instead of gettiing from the array, get from the database...use the object id..
 //se the put method for a "how too..."
 //GET A SINGLE chart BY PASSING ITS ID AS A URL
 router.get('/chart/:chartId', function(req, res, next) {
- const {chartId} = req.params;
- // same as 'const chartId = req.params.chartId'
+  const Chart = mongoose.model('Chart');
+  const chartId = req.params.chartId;
 
- const chart = CHARTS.find(entry => entry.id === chartId);
- if (!chart) {
-   return res.status(404).end(`Could not find chart '${chartId}'`);
- }
+  Chart.findById(chartId, function(err, chart) {
+    if (err) {
+      console.error(err);
+      return res.status(500).json(err);
+    }
+    if (!chart) {
+      return res.status(404).json({message: "Chart not found"});
+    }
 
- res.json(chart);
+    chart.name = req.body.name;
+    chart.age = req.body.age;
+    chart.height = req.body.height;
+    chart.weight = req.body.weight;
+
+    chart.save(function(err, savedChart) {
+      if (err) {
+        console.error(err);
+        return res.status(500).json(err);
+      }
+      res.json(savedChart);
+    })
+
+  })
+
 });
 
 
@@ -219,18 +196,5 @@ router.delete('/chart/:chartId', function(req, res, next) {
 
  })
 });
-
-
-// //ROUTE TO THE HOMEPAGE PUG TEMPLATE
-// router.get('/', function(req, res, next) {
-//   return res.render('index', { name: 'Home' });
-// });
-//
-// //example of how to get a pug template homepage
-// // app.get('/page', function(req, res, next){
-// //   //get the data dynamically
-// //   res.render('page', data);
-// // })
-
 
 module.exports = router;

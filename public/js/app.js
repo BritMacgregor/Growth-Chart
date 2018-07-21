@@ -89,18 +89,30 @@ function cancelChartForm() {
 }
 
 //VIEW BUTTON HANDLER
-//objective:
-//user clicks the view button next to list item
-//object ID is retrieved and user redirected to new webpage
-//data correlating to object ID is displayed on the new webpage
-// name, age, date, weight, and height
-//user may click exit button or X to be redirected back to "home" page.
 function handleViewChartClick(id) {
   const chart = window.chartList.find(chart => chart._id === id);
-  if (chart) {
+  if (id) {
     //code that redirects to a webpage or pop up modle that will show individual id properties.
     console.log("It works!!!" + chart._id);
+    alert(chart.name +
+          chart.age +
+          chart.height +
+          chart.weight +
+          chart.date);
+
   }
+}
+
+//SET LIST DATA
+function setListData(data) {
+
+  data = data || {};
+
+  const id = {
+    _id: data._id || '',
+  };
+
+  $('#chart-id').val(_id);
 }
 
 //EDIT BUTTON HANDLER

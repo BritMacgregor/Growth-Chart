@@ -75,6 +75,10 @@
           <button type="button" onclick="cancelChartForm()" class="btn btn-secondary">cancel</button>
         </form>
       </div>
+
+      <!--Single Item List Template-->
+      <div id="single-list-item"></div>
+
       <!--Footer-->
       <div class="row justify-content-center">
           <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-xs-12">
@@ -113,6 +117,19 @@
          {{/each}}
        </tbody>
      </table>
+    </script>
+
+    <script id="chart-item" type="text/x-handlebars-template">
+      <ul class="list-group">
+        <!--{{#each charts}}-->
+        <li class="list-group-item"> {{name}} </li>
+        <li class="list-group-item"> {{age}} </li>
+        <li class="list-group-item"> {{height}} </li>
+        <li class="list-group-item"> {{weight}} </li>
+        <li class="list-group-item"> {{date}} </li>
+        <!--<li class="list-group-item"> {{average}} </li>-->
+        <!--{{/each}}-->
+      </ul>
     </script>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
