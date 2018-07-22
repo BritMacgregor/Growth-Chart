@@ -15,11 +15,6 @@ mongoose.connection.openUri(`mongodb://${config.db.username}:${config.db.passwor
 // IMPORT ALL MONGOOSE MODELS
 require('./models/chart.model.js');
 
-// // VIEW ENGINE SETUP --- TELLS EXPRES TO USE THE PUG TEMPLATING ENGINE
-// app.set('view engine', 'pug');
-// //TELLS EXPRESS WHERE TO FIND PUG TEMPLATES IN THE VIEWS DIRECTORY
-// app.set('views', './views');
-
 const app = express();
 const publicPath = path.resolve(__dirname, '../public');
 app.use(bodyParser.json());

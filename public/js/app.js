@@ -82,39 +82,19 @@ function cancelChartForm() {
   toggleAddChartFormVisibility();
 }
 
-
-
-//VIEW BUTTON HANDLER
-// function handleViewChartClick(id) {
-//   const chart = window.chartList.find(chart => chart._id === id);
-//   if (id) {
-//     //code that redirects to a webpage or pop up modle that will show individual id properties.
-//     console.log("It works!!!" + chart._id);
-//   //document.getElementById('tag-id').innerHTML = '<ol><li>html data</li></ol>';
-//     alert(chart.name +
-//           chart.age +
-//           chart.height +
-//           chart.weight +
-//           chart.date);
-//
-//   }
-// }
-
 function handleViewChartClick(id) {
   const chart = window.chartList.find(chart => chart._id === id);
   if (id) {
     //code that redirects to a webpage or pop up modle that will show individual id properties.
     console.log("It works!!!" + chart._id);
-  document.getElementById('single-list-item').innerHTML = `<ul class="singleList"> <li> ${chart.name}</li> <li> ${chart.age}</li> <li> ${chart.height}</li> <li> ${chart.weight}</li> <li> ${chart.date}</li></ul>`
-
-
-          // chart.name
-          // chart.age
-          // chart.height
-          // chart.weight
-          // chart.date
-
+  document.getElementById('single-list-item').innerHTML = `<ul class="singleList"> <li><h2 class="statsHeader">${chart.name}'s Stats </h2> </li> <li> ${chart.name}</li> <li> ${chart.age}</li> <li> ${chart.height}</li> <li> ${chart.weight}</li> <li> ${chart.date}</li> <li><button onclick="closeListItem()" class="btn btn-secondary" type="button">Close</button></li></ul>`
+  document.getElementById('single-list-item').style.display = "block";
   }
+}
+
+//HANDLER FOR HIDING Single Listed Item
+function closeListItem() {
+  document.getElementById('single-list-item').style.display = "none";
 }
 
 //EDIT BUTTON HANDLER

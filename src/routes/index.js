@@ -7,6 +7,9 @@ router.use('/doc', function(req, res, next) {
   res.end(`Documentation http://expressjs.com/`);
 });
 
+
+//Function in progress
+//Goal is to determine if child is above, below, or right at average wieght and height based on user input.
 function calHeightPercentile(height){
   const highaverage = 25;
   const lowaverage = 15;
@@ -21,6 +24,7 @@ function calHeightPercentile(height){
     } else {
       console.log(average);
     }
+    //example of the math I will use to create this function
       // 1:
       // 6.6
       // 7.6

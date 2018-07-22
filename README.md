@@ -4,22 +4,23 @@
 **Intro**
 
 The project contained in this repository
-is a growth chart calculator and tracker.
+is a growth chart tracker.
 
 This application uses CRUD functions.
 
 Skills used to create this application include:
-HTML, CSS, JavaScript MEAN Stack.
+HTML, CSS, and JavaScript MEAN Stack.
 
 **Description**
-This application that tracks the growth of
-a child by calculating some basic data,
-weight, height, age. After the data is entered
-the app then returns to the user whether or not
-the child's weight and height are average,
-above average, or below average and displays
-those results in the form of a line graph.
-Users can view edit, and/or, the past entries.
+This is an application that tracks the growth of
+a child. Users can *CREATE* an entry by clicking the Add Chart button
+and then filling out and submitting the form. Users can view *READ* a
+previous entry by clicking the view button. If a user wishes to *UPDATE* an
+entry, they will do so by clicking the edit button, which will toggle the form.
+Simply make updates to the form and click submit. A user can *DELETE* an entry
+by clicking the delete button. For the purposes of this project, the entry will
+be "soft deleted".
+
 
 ### Project Requirments
 1. Responsive
@@ -46,6 +47,8 @@ In order to view and access/use this application on your local machine, you must
 2. After necessary dependencies are installed you will be able to view this application on:
     http://localhost:5000/
 
+3. Software needed to operate this application will be a command prompt to run the express server, a browser to view the html content, and the necessary dependencies installed through npm. You will also need to have the .env file which contains the required login and password information to access and use the database. Simply place the .env file in the root folder to be able to use the database.
+
 **To access the application on your local machine**
 To begin using the application simple click the add button. This will bring forth a form in which you can enter your child's stats.
 
@@ -56,3 +59,11 @@ You may make as many entries as you wish.
 If you wish to edit an entry, click the edit button displayed to the left of the entry. The form will display once again with your previous data already entered. Make your changes and click submit. Your entry will be updated and displayed back in the table.
 
 If you wish to delete an entry, click the delete button displayed to the left of the entry and next to the edit button. By clicking the delete button your entry will be deleted (soft delete) and no longer be visible to you.
+
+You may also view a single list item from the table by clicking the view button. To dismiss the data provided in the list, click the close button.
+
+**Future Goals for this Project**
+Although this project currently meets all the standards for the project requirements, it is my goal to continue to work on and improve this project.
+Future functions will include a calculating ability that will provide the user with whether their child's stats are average, or above or below average.
+You may note that in the code you will see sections of code commented out for the future build of this project.
+Furthermore, the desired outcome of this project would be not only to provide the averages of a child's weight and height, but to project those results on a dynamic chart that can be updated by the user.
