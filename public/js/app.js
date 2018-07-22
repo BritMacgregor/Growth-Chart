@@ -31,7 +31,6 @@ function refreshChartList() {
 
 //BUTTON FOR SHOWING FORM VISIBILITY
 function handleAddChartClick() {
-  // console.log("Baby steps...");
   setFormData({});
   toggleAddChartFormVisibility();
 }
@@ -44,7 +43,6 @@ function toggleAddChartFormVisibility() {
 //The Submit button will trigger a javascript function that grabs the data from the form and POSTs it to an API endpoint
 // After POSTing the data and receiving a response, the page will refresh the list of Charts.
 function submitChartForm() {
-  // console.log("You clicked 'submit'. Congratulations.");
 
   const chartData = {
     name: $('#chart-name').val(),
@@ -72,15 +70,11 @@ function submitChartForm() {
     contentType : 'application/json',
   })
     .done(function(response) {
-      // console.log("We have posted the data");
       refreshChartList();
       toggleAddChartFormVisibility();
     })
     .fail(function(error) {
-      // console.log("Failures at posting, we are", error);
     })
-
-  // console.log("Your chart data", chartData);
 }
 
 //CANCEL BUTTON WILL CLEAR THE FORM WITHOUT POSTING THE DATA
@@ -88,31 +82,39 @@ function cancelChartForm() {
   toggleAddChartFormVisibility();
 }
 
+
+
 //VIEW BUTTON HANDLER
+// function handleViewChartClick(id) {
+//   const chart = window.chartList.find(chart => chart._id === id);
+//   if (id) {
+//     //code that redirects to a webpage or pop up modle that will show individual id properties.
+//     console.log("It works!!!" + chart._id);
+//   //document.getElementById('tag-id').innerHTML = '<ol><li>html data</li></ol>';
+//     alert(chart.name +
+//           chart.age +
+//           chart.height +
+//           chart.weight +
+//           chart.date);
+//
+//   }
+// }
+
 function handleViewChartClick(id) {
   const chart = window.chartList.find(chart => chart._id === id);
   if (id) {
     //code that redirects to a webpage or pop up modle that will show individual id properties.
     console.log("It works!!!" + chart._id);
-    alert(chart.name +
-          chart.age +
-          chart.height +
-          chart.weight +
-          chart.date);
+  document.getElementById('single-list-item').innerHTML = `<ul class="singleList"> <li> ${chart.name}</li> <li> ${chart.age}</li> <li> ${chart.height}</li> <li> ${chart.weight}</li> <li> ${chart.date}</li></ul>`
+
+
+          // chart.name
+          // chart.age
+          // chart.height
+          // chart.weight
+          // chart.date
 
   }
-}
-
-//SET LIST DATA
-function setListData(data) {
-
-  data = data || {};
-
-  const id = {
-    _id: data._id || '',
-  };
-
-  $('#chart-id').val(_id);
 }
 
 //EDIT BUTTON HANDLER

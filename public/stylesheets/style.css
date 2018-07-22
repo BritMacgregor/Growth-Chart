@@ -224,7 +224,7 @@ td, td a {
 @import url(https://fonts.googleapis.com/css?family=opensans:500);
 
 
-      
+
             .c{
                 text-align: center;
                 display: block;
@@ -443,3 +443,12 @@ td, td a {
                 0% {margin-left: 1000px;}
                 100% {margin-left: -1000px;}
             }
+
+.singleList {
+  text-decoration: none;
+  list-style: none;
+  font-size: 1.2em;
+  color: #e2126a;
+  background-color: #b1d1d0;
+  text-align: center;
+}
